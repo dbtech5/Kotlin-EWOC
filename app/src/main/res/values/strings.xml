@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">หน้าแรก ครับพี่นุ่น</string>
+    <string name="menu_home">หน้าแรก</string>
     <string name="menu_water">หน้าสรุปสถานการณ์น้ำ</string>
     <string name="menu_map">แผนที่</string>
     <string name="menu_data">ข้อมูล</string>

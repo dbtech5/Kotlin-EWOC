@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -26,15 +29,24 @@ class SlideshowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+            ViewModelProvider(this)[SlideshowViewModel::class.java]
 
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        val webView = binding.webContent
+        webView.settings.javaScriptEnabled = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
+        webView.settings.pluginState = WebSettings.PluginState.ON;
+        webView.settings.javaScriptCanOpenWindowsAutomatically = true;
+        webView.settings.allowFileAccess = true;
+        webView.settings.domStorageEnabled = true;
+
+
+
+        webView.loadUrl("https://www.google.com")
+
         return root
     }
 

@@ -97,6 +97,7 @@ class HomeFragment : Fragment() {
         var txt:TextView? = null
         var img:ImageView?= null
         fun onCreateViewHolder(parent: ViewGroup, viewType: Int) {
+
             txt = itemView.findViewById(R.id.Reservoir)
         }
 

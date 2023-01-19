@@ -1,24 +1,17 @@
 package com.example.ewoc_kotlin.ui.home
 
-import android.app.Activity
-import android.app.Application
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ewoc_kotlin.R
 import com.example.ewoc_kotlin.databinding.FragmentHomeBinding
-import com.google.android.material.internal.ContextUtils.getActivity
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.*
 import java.io.*
 import java.net.URL
 
@@ -30,6 +23,8 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
     var textView: TextView? = null
+    private var strings_item = arrayOfNulls<String>(8
+    )
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,42 +36,34 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         recyclerView = binding.userlist
-        val users = arrayOfNulls<String>(8
-        )
-        recyclerView!!.adapter = RecyclerViewAdapter()
 
-        Thread(Runnable {
-            val url = URL("https://dbtech5.github.io/api_test/api.txt")
-            val connection = url.openConnection()
-            BufferedReader(InputStreamReader(connection.getInputStream())).use { inp ->
-                var line: String?
-                var n = 0
-                while (inp.readLine().also { line = it } != null) {
-                    println(line)
-                    println(line?.split("&n")?.size)
-                    var lit = line?.split("&n")
-                    for( item in lit!!){
-                        users[n] = item
-                        n+=1
+        recyclerView!!.setHasFixedSize(true);
+        var layoutManager = LinearLayoutManager(parentFragment?.context);
+        layoutManager.orientation = LinearLayoutManager.VERTICAL;
+        recyclerView!!.layoutManager = layoutManager;
+
+
+        Thread (
+            Runnable {
+                val url = URL("https://dbtech5.github.io/api_test/api.txt")
+                val connection = url.openConnection()
+                BufferedReader(InputStreamReader(connection.getInputStream())).use { inp ->
+                    var line: String?
+                    var n = 0
+                    while (inp.readLine().also { line = it } != null) {
+                        println(line)
+                        println(line?.split("&n")?.size)
+                        var lit = line?.split("&n")
+                        for( item in lit!!){
+                            strings_item[n] = item
+                            n+=1
+                        }
+                        println(strings_item)
+                        recyclerView!!.adapter = RecyclerViewAdapter(strings_item)
                     }
-                    /*
-                    val adapter = activity?.let {
-                        ArrayAdapter<String>(
-                            it,
-                            android.R.layout.simple_spinner_item,
-                            users
-                        )
-                    }
-                    mListView.adapter = adapter*/
                 }
-
-
-
-
-
-
             }
-        })
+            ).start()
 
 
         return root
@@ -86,25 +73,31 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    public class RecyclerViewAdapter : RecyclerView.Adapter<ViewHolder>() {
+    public class RecyclerViewAdapter(var strings_item: Array<String?>) : RecyclerView.Adapter<ViewHolder>() {
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            var v:View = LayoutInflater.from(Activity().applicationContext).inflate(R.layout.item_list, parent, false)
+            var v:View = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+
+
             return ViewHolder(v)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.txt?.text = "sss"
+            holder.txt?.text  = "sssss"
+            //holder.txt!!.text = strings_item[position]
+            //holder.img?.setImageResource(R.drawable.ic_menu_camera)
         }
 
         override fun getItemCount(): Int {
-            return 1;
+            return strings_item.size;
         }
 
     }
     public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var txt:TextView? = null
+        var img:ImageView?= null
         fun onCreateViewHolder(parent: ViewGroup, viewType: Int) {
-            txt = itemView.findViewById(R.id.textView4)
+            txt = itemView.findViewById(R.id.Reservoir)
         }
 
         fun onBindViewHolder(holder: ViewHolder, position: Int) {

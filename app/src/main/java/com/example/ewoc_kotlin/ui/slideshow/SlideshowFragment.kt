@@ -45,7 +45,7 @@ class SlideshowFragment : Fragment() {
 
 
 
-        webView.loadUrl("https://www.google.com")
+        webView.loadUrl("https://ewoc.eastwater.com/ewoc/map.php")
 
         return root
     }

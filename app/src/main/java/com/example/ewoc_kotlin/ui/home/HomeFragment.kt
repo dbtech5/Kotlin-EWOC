@@ -10,10 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.*
 import com.example.ewoc_kotlin.R
 import com.example.ewoc_kotlin.databinding.FragmentHomeBinding
 import java.io.*
 import java.net.URL
+import org.json.JSONObject
+
+
+
 
 class HomeFragment : Fragment() {
 
@@ -38,7 +43,7 @@ class HomeFragment : Fragment() {
         recyclerView = binding.userlist
 
         recyclerView!!.setHasFixedSize(true);
-        var layoutManager = LinearLayoutManager(parentFragment?.context);
+        var layoutManager = LinearLayoutManager(this?.context);
         layoutManager.orientation = LinearLayoutManager.VERTICAL;
         recyclerView!!.layoutManager = layoutManager;
 
@@ -73,42 +78,61 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    public class RecyclerViewAdapter(var strings_item: Array<String?>) : RecyclerView.Adapter<ViewHolder>() {
+    public class RecyclerViewAdapter(private var strings_item: Array<String?>) : Adapter<RecyclerView.ViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             var v:View = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
 
 
             return ViewHolder(v)
         }
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.txt?.text  = "sssss"
-            //holder.txt!!.text = strings_item[position]
-            //holder.img?.setImageResource(R.drawable.ic_menu_camera)
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            when(holder){
+                is ViewHolder ->{
+                    strings_item[position]?.let { holder.bind(it) }
+                }
+            }
         }
 
         override fun getItemCount(): Int {
-            return strings_item.size;
+            return strings_item.size-1;
         }
+
 
     }
     public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txt:TextView? = null
-        var img:ImageView?= null
-        fun onCreateViewHolder(parent: ViewGroup, viewType: Int) {
+        /*
+        var reader: JSONObject = JSONObject("{" +
+                "'dk':'ดอกกราย'," +
+                "'npl':'หนองปลาไหล'," +
+                "'ky':'คลองใหญ่'," +
+                "'ps':'ประแสร์'," +
+                "'nk':'หนองค้อ'," +
+                "'bp':'บางพระ'," +
+                "'kl':'คลองหลวง รัชชโลทร'," +
+                "'ksy':'คลองสียัด'," +
+                "'mpc':'มาบประชัน'," +
+                "'cn':'ซากนอก'," +
+                "'hkj':'ห้วยขุนจิต'," +
+                "'hsp':'ห้วยสะพาน'," +
+                "'nkd':'หนองกลางดง'," +
+                "'krb':'คลองระบม'," +
+                "}")
 
-            txt = itemView.findViewById(R.id.Reservoir)
+         */
+        var name:TextView? = itemView.findViewById<TextView>(R.id.Reservoir)
+        var inflow:TextView? = itemView.findViewById<TextView>(R.id.Inflow)
+        var outflow:TextView? = itemView.findViewById<TextView>(R.id.Outflow)
+        var img:ImageView? = itemView.findViewById<ImageView>(R.id.img)
+        fun bind(name: String){
+            var txt_lit = name?.split(",")
+            this.name?.text = txt_lit[0]
+            //reader[txt_lit[0]].toString()
+            this.inflow?.text = "ปริมาณน้ำไหลเข้า "+txt_lit[2]+" ล้าน ลบ.ม."
+            this.outflow?.text = "ปริมาณน้ำไหลออก "+txt_lit[3]+" ล้าน ลบ.ม."
+            this.img!!.setImageResource(R.drawable.reservoir)
         }
-
-        fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            TODO("Not yet implemented")
-        }
-
-        fun getItemCount(): Int {
-            TODO("Not yet implemented")
-        }
-
     }
 
 

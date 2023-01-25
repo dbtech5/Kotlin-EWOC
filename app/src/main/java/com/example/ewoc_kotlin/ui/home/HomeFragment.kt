@@ -102,25 +102,7 @@ class HomeFragment : Fragment() {
 
     }
     public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        /*
-        var reader: JSONObject = JSONObject("{" +
-                "'dk':'ดอกกราย'," +
-                "'npl':'หนองปลาไหล'," +
-                "'ky':'คลองใหญ่'," +
-                "'ps':'ประแสร์'," +
-                "'nk':'หนองค้อ'," +
-                "'bp':'บางพระ'," +
-                "'kl':'คลองหลวง รัชชโลทร'," +
-                "'ksy':'คลองสียัด'," +
-                "'mpc':'มาบประชัน'," +
-                "'cn':'ซากนอก'," +
-                "'hkj':'ห้วยขุนจิต'," +
-                "'hsp':'ห้วยสะพาน'," +
-                "'nkd':'หนองกลางดง'," +
-                "'krb':'คลองระบม'," +
-                "}")
 
-         */
         var name:TextView? = itemView.findViewById<TextView>(R.id.Reservoir)
         var inflow:TextView? = itemView.findViewById<TextView>(R.id.Inflow)
         var outflow:TextView? = itemView.findViewById<TextView>(R.id.Outflow)
@@ -131,7 +113,7 @@ class HomeFragment : Fragment() {
             //reader[txt_lit[0]].toString()
             this.inflow?.text = "ปริมาณน้ำไหลเข้า "+txt_lit[2]+" ล้าน ลบ.ม."
             this.outflow?.text = "ปริมาณน้ำไหลออก "+txt_lit[3]+" ล้าน ลบ.ม."
-            this.img!!.setImageResource(R.drawable.reservoir)
+            this.img!!.setImageResource(R.drawable.reservoir_icon)
         }
     }
 

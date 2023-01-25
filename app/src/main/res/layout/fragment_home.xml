@@ -28,78 +28,57 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="58dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="276dp"
-            android:layout_marginBottom="36dp"
-            android:text="อ่างเก็บน้ำ"
-            app:backgroundTint="#FFFFFF"
-            app:cornerRadius="25dp"
-            app:icon="@drawable/ic_menu_gallery"
-            app:iconPadding="25dp"
-            app:iconTint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="58dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginBottom="36dp"
-            android:text="อ่างเก็บน้ำ"
-            app:backgroundTint="#FFFFFF"
-            app:cornerRadius="25dp"
-            app:icon="@drawable/ic_menu_gallery"
-            app:iconPadding="25dp"
-            app:iconTint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="58dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="116dp"
-            android:layout_marginBottom="36dp"
-            android:text="อ่างเก็บน้ำ"
-            app:backgroundTint="#FFFFFF"
-            app:cornerRadius="25dp"
-            app:icon="@drawable/ic_menu_gallery"
-            app:iconPadding="25dp"
-            app:iconTint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="58dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="196dp"
-            android:layout_marginBottom="36dp"
-            android:text="อ่างเก็บน้ำ"
-            app:backgroundTint="#FFFFFF"
-            app:cornerRadius="25dp"
-            app:icon="@drawable/ic_menu_gallery"
-            app:iconPadding="25dp"
-            app:iconTint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginBottom="20dp"
-            android:text="เลือกข้อมูลแสดงผล"
-            app:drawableTint="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:layout_marginTop="136dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:textAllCaps="false" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:layout_width="417dp"
+                android:layout_height="72dp"
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteX="-28dp"
+                tools:layout_editor_absoluteY="177dp">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="73dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/customer_icon" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="69dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/reservoir_icon" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="73dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/pump_icon" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="73dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/rain_icon" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="73dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/quality_icon" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="69dp"
+                    android:layout_height="54dp"
+                    android:src="@drawable/flow_icon" />
+            </LinearLayout>
+        </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
